@@ -2,7 +2,7 @@
 
 ## Histórias de usuário
 
-* Eu como aluno quero um sistema no qual eu possa ver as informações dos cursos de forma online para que eu tenha total noção dos mesmos;
+* Eu como aluno quero um sistema no qual eu possa ver as informações dos cursos de forma online para que eu tenha total noção deles;
 * Eu como aluno quero um sistema no qual eu possa realizar minha matrícula online para que eu não precise me deslocar até a universidade;
 * Eu como aluno quero um sistema no qual eu possa cancelar minha matrícula online para que eu não precise me deslocar até a universidade;
 * Eu como aluno quero um sistema no qual eu consiga visualizar o número de alunos matriculados nas disciplinas para que eu possa ver se ela possui o número mínimo de alunos;
