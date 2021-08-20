@@ -9,9 +9,14 @@
 * Eu como aluno quero um sistema que me permita visualizar o número de alunos matriculados nas disciplinas para que eu possa checar se ela atingiu o número máximo de alunos;
 * Eu como secretário(a) da universidade quero um sistema que armazene todas as informações envolvidas no processo de matrícula para posteriores checagens de dados;
 * Eu como secretário(a) da universidade quero um sistema de matrículas que notifique automaticamente o sistema de cobranças quando o aluno se inscrever para o semestre para que tenhamos mais eficiência;
+* Eu como secretário(a) da universidade quero um sistema no qual gere um currículo online referente a cada semestre para que esteja de fácil consulta a todos os usuários do sistema.
+* Eu como secretário(a) da universidade quero um sistema no qual seja possível o cadastro de um aluno para que ele possa se matricular posteriormente.
+* Eu como secretário(a) da universidade quero um sistema no qual seja possível a atualização do cadastro do aluno para que ele mantenha todos os seus dados corretos.
+* Eu como secretário(a) da universidade quero um sistema no qual seja possível a exclusão de dados de um aluno para que a base de dados se matenha condizente com os alunos atualmente matriculados.
+* Eu como secretário(a) da universidade quero um sistema no qual seja possível a consulta de dados de um aluno específico para a verificação de seus dados. 
 * Eu como professor quero um sistema no qual posso consultar os alunos que estão matriculados em cada disciplina para que eu possa me organizar melhor e planejar minhas aulas com antecedência;
 * Eu como usuário quero um sistema no qual eu possua minha senha particular para que possa acessar o sistema.
 * Eu como funcionário(a) do setor de cobrança quero um sistema no qual haja a notificação automática das matrículas efetuadas naquele semestre para que eu possa cobrar os alunos referente as disciplinas ofertadas.
-* Eu como secretário(a) da universidade quero um sistema no qual gere um currículo online referente a cada semestre para que esteja de fácil consulta a todos os usuários do sistema. 
+ 
 
 
