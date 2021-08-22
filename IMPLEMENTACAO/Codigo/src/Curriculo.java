@@ -67,35 +67,43 @@ public class Curriculo {
 		this.cursos = cursos;
 	}
 
-	private void addAluno() {
+	public void addAluno() {
 		
 	}
 	
-	private void removeAluno() {
+	public void updateAluno(){
 		
 	}
 	
-	private void addProfessor() {
+	public void removeAluno() {
 		
 	}
 	
-	private void removeProfessor() {
+	public void addProfessor() {
 		
 	}
 	
-	private void addDisciplina() {
+	public void updateProfessor(){
 		
 	}
 	
-	private void removeDisciplina() {
+	public void removeProfessor() {
 		
 	}
 	
-	private void addCurso() {
+	public void addDisciplina() {
 		
 	}
 	
-	private void removeCurso() {
+	public void removeDisciplina() {
+		
+	}
+	
+	public void addCurso() {
+		
+	}
+	
+	public void removeCurso() {
 		
 	}
 	
