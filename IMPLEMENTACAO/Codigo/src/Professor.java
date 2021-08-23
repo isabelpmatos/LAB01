@@ -21,10 +21,6 @@ public class Professor extends User {
 		this.nome = nome;
 	}
 	
-	public void updateNome(String nome) {
-		this.setNome(nome);
-	}
-	
 	public void addDisciplina() {
 		
 	}

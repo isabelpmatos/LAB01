@@ -28,9 +28,6 @@ public class Aluno extends User {
 		this.curso = curso;
 	}
 	
-	public void updateCurso(Curso curso) {
-		this.setCurso(curso);
-	}
 	public String getNome() {
 		return nome;
 	}
@@ -39,20 +36,12 @@ public class Aluno extends User {
 		this.nome = nome;
 	}
 	
-	public void updateNome(String nome) {
-		this.setNome(nome);
-	}
-	
 	public int getMatricula() {
 		return matricula;
 	}
 
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
-	}
-	
-	public void updateMatricula(int matricula) {
-		this.setMatricula(matricula);
 	}
 	
 	public void addDisciplina() {

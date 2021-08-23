@@ -20,20 +20,12 @@ public abstract class User {
 		this.usuario = usuario;
 	}
 	
-	public void updateUsuario(String usuario) {
-		this.setUsuario(usuario);
-	}
-	
 	public String getSenha() {
 		return senha;
 	}
 	
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	
-	public void updateSenha(String senha) {
-		this.setSenha(senha);
 	}
 	
 	public void recuperarSenha() {
