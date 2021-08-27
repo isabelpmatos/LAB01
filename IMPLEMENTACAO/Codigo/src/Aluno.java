@@ -1,11 +1,12 @@
+package app;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Aluno extends User {
 	private String nome;
-	private int matricula;
+	private int codigoDoAluno;
 	private Curso curso;
-	private ArrayList<Disciplina> disciplinasMatriculadas = new ArrayList<Disciplina>();
+	private ArrayList<Matricula> matriculas = new ArrayList<Matricula>();
 	private static final int NUM_DISCIPLINAS = 4;
 	private static final int MAX_OPTATIVAS = 2;
 	
@@ -13,10 +14,9 @@ public class Aluno extends User {
 		
 	}
 	
-	public Aluno(String usuario, String senha, String nome, int matricula, Curso curso) {
+	public Aluno(String usuario, String senha, String nome, Curso curso) {
 		super(usuario, senha);
 		this.nome = nome;
-		this.matricula = matricula;
 		this.curso = curso;
 	}
 	
@@ -36,12 +36,20 @@ public class Aluno extends User {
 		this.nome = nome;
 	}
 	
-	public int getMatricula() {
-		return matricula;
+	public int getCodigoDoAluno() {
+		return codigoDoAluno;
 	}
 
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
+	public void setCodigoDoAluno(int codigoDoAluno) {
+		this.codigoDoAluno = codigoDoAluno;
+	}
+
+	public ArrayList<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(ArrayList<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 	
 	public void addDisciplina() {
@@ -51,4 +59,6 @@ public class Aluno extends User {
 	public void removeDisciplina() {
 		
 	}
+
+	
 }

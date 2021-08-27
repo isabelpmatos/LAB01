@@ -1,5 +1,6 @@
+package app;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Professor extends User {
 	private String nome;
@@ -17,17 +18,29 @@ public class Professor extends User {
 	public String getNome() {
 		return this.nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public ArrayList<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 	
 	public void addDisciplina() {
 		
 	}
+	
 	public void removeDisciplina() {
 		
 	}
+	
 	public void buscarAluno(Disciplina disciplina) {
 		
 	}
+
 }

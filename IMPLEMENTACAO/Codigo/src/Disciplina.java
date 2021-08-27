@@ -1,5 +1,6 @@
+package app;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Disciplina {
 
@@ -7,10 +8,10 @@ public class Disciplina {
 	private boolean isOptativa;
 	private static final int MAX_ALUNOS = 60;
 	private static final int MIN_ALUNOS = 3;
-	private List alunos = new ArrayList<Aluno>();
+	private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 	private double valor;
 	
-	public Disciplina(boolean isOptativa, List alunos, double valor) {
+	public Disciplina(boolean isOptativa, ArrayList<Aluno> alunos, double valor) {
 		this.isOptativa = isOptativa;
 		this.alunos = alunos;
 		this.valor = valor;
@@ -32,11 +33,11 @@ public class Disciplina {
 		this.isOptativa = isOptativa;
 	}
 
-	public List getAlunos() {
+	public ArrayList<Aluno> getAlunos() {
 		return alunos;
 	}
 
-	public void setAlunos(List alunos) {
+	public void setAlunos(ArrayList<Aluno> alunos) {
 		this.alunos = alunos;
 	}
 

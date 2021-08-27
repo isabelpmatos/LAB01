@@ -1,3 +1,4 @@
+package app;
 
 public class Secretario extends User {
 	private String nome;

@@ -1,3 +1,4 @@
+package app;
 
 public abstract class User {
 	private String usuario;

@@ -1,13 +1,14 @@
+package app;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Curso {
 	
 	private String nome;
 	private int numCreditos;
-	private List disciplinas = new ArrayList<Disciplina>();
+	private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
-	public Curso(String nome, int numCreditos, List disciplinas) {
+	public Curso(String nome, int numCreditos, ArrayList<Disciplina> disciplinas) {
 		this.nome = nome;
 		this.numCreditos = numCreditos;
 		this.disciplinas = disciplinas;
@@ -29,11 +30,11 @@ public class Curso {
 		this.numCreditos = numCreditos;
 	}
 
-	public List getDisciplinas() {
+	public ArrayList<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDisciplinas(List disciplinas) {
+	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 
