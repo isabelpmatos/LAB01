@@ -38,11 +38,11 @@ public class Curso {
 		this.disciplinas = disciplinas;
 	}
 
-	public void addDisciplina() {
-		
+	public void addDisciplina(Disciplina disciplina) {
+		disciplinas.add(disciplina);
 	}
 	
-	public void removeDisciplina() {
-		
+	public void removeDisciplina(Disciplina disciplina) {
+		disciplinas.remove(disciplina);
 	}
 }

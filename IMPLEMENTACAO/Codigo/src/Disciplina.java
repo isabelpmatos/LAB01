@@ -57,11 +57,11 @@ public class Disciplina {
 		return MIN_ALUNOS;
 	}
 
-	public void addAluno() {
-		
+	public void addAluno(Aluno aluno) {
+		alunos.add(aluno);
 	}
 	
-	public void removeAluno() {
-		
+	public void removeAluno(Aluno aluno) {
+		alunos.remove(aluno);
 	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Professor extends User {
 	private String nome;
-	private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	private ArrayList<Disciplina> disciplinasMinistradas = new ArrayList<Disciplina>();
 	
 	public Professor() {
 		
@@ -24,23 +24,25 @@ public class Professor extends User {
 	}
 	
 	public ArrayList<Disciplina> getDisciplinas() {
-		return disciplinas;
+		return disciplinasMinistradas;
 	}
 
 	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+		this.disciplinasMinistradas = disciplinas;
 	}
 	
-	public void addDisciplina() {
+	public void addDisciplina(Disciplina disciplina) {
+		disciplinasMinistradas.add(disciplina);
+	}
+	
+	public void removeDisciplina(Disciplina disciplina) {
+		disciplinasMinistradas.remove(disciplina);
+	}
+	
+	public ArrayList<Aluno> buscarAlunos(Disciplina disciplina) {
+				return disciplina.getAlunos();
+		}
 		
-	}
-	
-	public void removeDisciplina() {
-		
-	}
-	
-	public void buscarAluno(Disciplina disciplina) {
 		
 	}
 
-}

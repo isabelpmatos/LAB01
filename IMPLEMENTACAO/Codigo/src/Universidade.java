@@ -18,6 +18,9 @@ public class Universidade {
 		this.cursos = cursos;
 	}
 
+	public Universidade() {
+	}
+
 	public String getSemestre() {
 		return semestre;
 	}
@@ -58,36 +61,30 @@ public class Universidade {
 		this.cursos = cursos;
 	}
 
-	public void addAluno() {
-		
+	public void addAluno(Aluno aluno) {
+		alunos.add(aluno);
 	}
 	
-	public void updateAluno(){
-		
+	
+	public void removeAluno(Aluno aluno) {
+		alunos.remove(aluno);
 	}
 	
-	public void removeAluno() {
-		
+	public void addProfessor(Professor professor) {
+		professores.add(professor);
 	}
 	
-	public void addProfessor() {
-		
+	
+	public void removeProfessor(Professor professor) {
+		professores.remove(professor);
 	}
 	
-	public void updateProfessor(){
-		
+	public void addCurso(Curso curso) {
+		cursos.add(curso);
 	}
 	
-	public void removeProfessor() {
-		
-	}
-	
-	public void addCurso() {
-		
-	}
-	
-	public void removeCurso() {
-		
+	public void removeCurso(Curso curso) {
+		cursos.remove(curso);
 	}
 	
 	

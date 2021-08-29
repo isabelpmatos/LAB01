@@ -6,7 +6,7 @@ public class Aluno extends User {
 	private String nome;
 	private int codigoDoAluno;
 	private Curso curso;
-	private ArrayList<Matricula> matriculas = new ArrayList<Matricula>();
+	private ArrayList<Matricula> disciplinasMatriculadas = new ArrayList<Matricula>();
 	private static final int NUM_DISCIPLINAS = 4;
 	private static final int MAX_OPTATIVAS = 2;
 	
@@ -14,10 +14,11 @@ public class Aluno extends User {
 		
 	}
 	
-	public Aluno(String usuario, String senha, String nome, Curso curso) {
+	public Aluno(String usuario, String senha, String nome, Curso curso, int codigoDoAluno) {
 		super(usuario, senha);
 		this.nome = nome;
 		this.curso = curso;
+		this.codigoDoAluno = codigoDoAluno;
 	}
 	
 	public Curso getCurso() {
@@ -45,19 +46,19 @@ public class Aluno extends User {
 	}
 
 	public ArrayList<Matricula> getMatriculas() {
-		return matriculas;
+		return disciplinasMatriculadas;
 	}
 
 	public void setMatriculas(ArrayList<Matricula> matriculas) {
-		this.matriculas = matriculas;
+		this.disciplinasMatriculadas = matriculas;
 	}
 	
-	public void addDisciplina() {
-		
+	public void addDisciplina(Matricula matricula) {
+		disciplinasMatriculadas.add(matricula);
 	}
 
-	public void removeDisciplina() {
-		
+	public void removeDisciplina(Matricula matricula) {
+		disciplinasMatriculadas.remove(matricula);
 	}
 
 	

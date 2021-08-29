@@ -20,8 +20,4 @@ public class Secretario extends User {
 		this.nome = nome;
 	}
 	
-	public void gerarCurriculo() {
-		
-	}
-
 }
