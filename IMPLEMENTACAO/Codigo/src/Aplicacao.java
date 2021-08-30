@@ -42,7 +42,7 @@ public class Aplicacao {
 	}
 	
 	public static void validarLogin(Universidade universidade, Scanner teclado) {
-		System.out.println("UNIVERSIDADE X \n");
+		System.out.println("\nUNIVERSIDADE X \n");
 		System.out.println("Insira seu usuário: ");
 		String opcao = teclado.next();
 		String senha = "x";
@@ -259,6 +259,7 @@ public class Aplicacao {
 		System.out.println("1 - Efetuar matrícula");
 		System.out.println("2 - Minhas disciplinas");
 		System.out.println("3 - Pagamento");
+		System.out.println("0 - Sair");
 		System.out.println("Insira uma opção:");
 		
 		int opcao = teclado.nextInt();
@@ -328,15 +329,17 @@ public class Aplicacao {
 			System.out.println(i + "-" + o.getDisciplina().getNome());
 			i++;
 		}
+		System.out.println("0-Sair");
 		
 		System.out.println("\nInsira uma opção: ");
 		
 		int opcao = teclado.nextInt();
 		teclado.nextLine();
+		if(opcao == 0) {
+			validarLogin(univ, teclado);
+		}
 		imprimirAlunos(univ, teclado, opcao, p);
-		
 		teclado.nextLine();
-		validarLogin(univ, teclado);
 	}
 	
 	public static void imprimirAlunos(Universidade univ, Scanner teclado, int opcao, Professor p) {
