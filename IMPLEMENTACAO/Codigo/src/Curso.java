@@ -8,10 +8,11 @@ public class Curso {
 	private int numCreditos;
 	private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
-	public Curso(String nome, int numCreditos, ArrayList<Disciplina> disciplinas) {
+	public Curso() {}
+	
+	public Curso(String nome, int numCreditos) {
 		this.nome = nome;
 		this.numCreditos = numCreditos;
-		this.disciplinas = disciplinas;
 	}
 
 	public String getNome() {

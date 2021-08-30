@@ -4,29 +4,14 @@ import java.util.ArrayList;
 
 public class Universidade {
 
-	private String semestre;
 	private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 	private ArrayList<Professor> professores = new ArrayList<Professor>();
+	private ArrayList<Secretario> secretarios = new ArrayList<Secretario>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<Curso> cursos = new ArrayList<Curso>();
-	
-	public Universidade(String semestre, ArrayList<Aluno> alunos, ArrayList<Professor> professores, ArrayList<User> users, ArrayList<Curso> cursos) {
-		this.semestre = semestre;
-		this.alunos = alunos;
-		this.professores = professores;
-		this.users = users;
-		this.cursos = cursos;
-	}
+	private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 	public Universidade() {
-	}
-
-	public String getSemestre() {
-		return semestre;
-	}
-
-	public void setSemestre(String semestre) {
-		this.semestre = semestre;
 	}
 
 	public ArrayList<Aluno> getAlunos() {
@@ -57,26 +42,46 @@ public class Universidade {
 		return cursos;
 	}
 
+	public ArrayList<Secretario> getSecretarios() {
+		return secretarios;
+	}
+
+	public void setSecretarios(ArrayList<Secretario> secretarios) {
+		this.secretarios = secretarios;
+	}
+	
 	public void setCursos(ArrayList<Curso> cursos) {
 		this.cursos = cursos;
 	}
 
 	public void addAluno(Aluno aluno) {
 		alunos.add(aluno);
+		users.add(aluno);
 	}
-	
 	
 	public void removeAluno(Aluno aluno) {
 		alunos.remove(aluno);
+		users.remove(aluno);
 	}
 	
 	public void addProfessor(Professor professor) {
 		professores.add(professor);
+		users.add(professor);
 	}
-	
 	
 	public void removeProfessor(Professor professor) {
 		professores.remove(professor);
+		users.remove(professor);
+	}
+	
+	public void addSecretario(Secretario secretario) {
+		secretarios.add(secretario);
+		users.add(secretario);
+	}
+	
+	public void removeSecretario(Secretario secretario) {
+		secretarios.remove(secretario);
+		users.remove(secretario);
 	}
 	
 	public void addCurso(Curso curso) {
@@ -86,6 +91,24 @@ public class Universidade {
 	public void removeCurso(Curso curso) {
 		cursos.remove(curso);
 	}
+	
+	public void addDisciplina(Disciplina d) {
+		disciplinas.add(d);
+	}
+	
+	public void removeDisciplina(Disciplina d) {
+		disciplinas.remove(d);
+	}
+
+	public ArrayList<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	
 	
 	
 }

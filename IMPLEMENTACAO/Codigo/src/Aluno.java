@@ -3,10 +3,11 @@ package app;
 import java.util.ArrayList;
 
 public class Aluno extends User {
-	private String nome;
+	
 	private int codigoDoAluno;
 	private Curso curso;
-	private ArrayList<Matricula> disciplinasMatriculadas = new ArrayList<Matricula>();
+	private int periodo;
+	private ArrayList<Oferta> ofertasMatriculadas = new ArrayList<Oferta>();
 	private static final int NUM_DISCIPLINAS = 4;
 	private static final int MAX_OPTATIVAS = 2;
 	
@@ -14,11 +15,19 @@ public class Aluno extends User {
 		
 	}
 	
-	public Aluno(String usuario, String senha, String nome, Curso curso, int codigoDoAluno) {
-		super(usuario, senha);
-		this.nome = nome;
+	public Aluno(String usuario, String senha, String nome, Curso curso, int codigoDoAluno, int periodo) {
+		super(usuario, senha, nome);
+		this.periodo = periodo;
 		this.curso = curso;
 		this.codigoDoAluno = codigoDoAluno;
+	}
+	
+	public int getperiodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
 	}
 	
 	public Curso getCurso() {
@@ -29,14 +38,6 @@ public class Aluno extends User {
 		this.curso = curso;
 	}
 	
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
 	public int getCodigoDoAluno() {
 		return codigoDoAluno;
 	}
@@ -45,21 +46,23 @@ public class Aluno extends User {
 		this.codigoDoAluno = codigoDoAluno;
 	}
 
-	public ArrayList<Matricula> getMatriculas() {
-		return disciplinasMatriculadas;
+	public ArrayList<Oferta> getOfertasMatriculadas() {
+		return ofertasMatriculadas;
 	}
 
-	public void setMatriculas(ArrayList<Matricula> matriculas) {
-		this.disciplinasMatriculadas = matriculas;
+	public void setOfertasMatriculadas(ArrayList<Oferta> ofertas) {
+		this.ofertasMatriculadas = ofertas;
 	}
 	
-	public void addDisciplina(Matricula matricula) {
-		disciplinasMatriculadas.add(matricula);
+	public void addOferta(Oferta oferta) {
+		ofertasMatriculadas.add(oferta);
 	}
 
-	public void removeDisciplina(Matricula matricula) {
-		disciplinasMatriculadas.remove(matricula);
+	public void removeOferta(Oferta oferta) {
+		ofertasMatriculadas.remove(oferta);
 	}
+
+	
 
 	
 }
