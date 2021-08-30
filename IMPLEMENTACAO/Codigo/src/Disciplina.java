@@ -83,7 +83,7 @@ public class Disciplina {
 		alunos.remove(aluno);
 	}
 	
-	public void addAOferta(Oferta o) {
+	public void addOferta(Oferta o) {
 		ofertas.add(o);
 	}
 	

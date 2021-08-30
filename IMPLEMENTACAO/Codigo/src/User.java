@@ -7,7 +7,6 @@ public abstract class User {
 	private String usuario;
 	private String senha;
 	private String nome;
-	private ArrayList<User> usuarios = new ArrayList<User>();
 	
 	public User() {
 		
@@ -18,11 +17,7 @@ public abstract class User {
 		this.senha = senha;
 		this.nome = nome;
 	}
-	
-	public void addUsers (User user) {
-		usuarios.add(user);
-	}
-	
+		
 	public String getUsuario() {
 		return usuario;
 	}

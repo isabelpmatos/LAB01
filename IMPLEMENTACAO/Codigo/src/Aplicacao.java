@@ -30,8 +30,8 @@ public class Aplicacao {
 		universidade.addDisciplina(d2);
 		c.addDisciplina(d);
 		c.addDisciplina(d2);
-		d.addAOferta(o);
-		d2.addAOferta(o2);
+		d.addOferta(o);
+		d2.addOferta(o2);
 		d.addAluno(a);
 		d2.addAluno(a2);
 		d2.addAluno(a);
