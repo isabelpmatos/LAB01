@@ -12,7 +12,9 @@ public class Aplicacao {
 		//Dados de teste
 
 		Professor p = new Professor("profe", "12345", "Pedro da Silva");
+		Professor p1 = new Professor("profe1", "6789", "Amarildo Ferreira");
 		Curso c = new Curso("Engenharia de software", 5);
+		Curso c1 = new Curso("Filosofia", 6);
 		Disciplina d = new Disciplina("AED2", false, 200.00);
 		Disciplina d2 = new Disciplina("Arquitetura de computadores", false, 200.00);
 		Disciplina d3 = new Disciplina("Direito Civil", false, 250.00);
@@ -24,10 +26,12 @@ public class Aplicacao {
 		Secretario s = new Secretario("sec", "sec123", "Patricia");
 
 		universidade.addProfessor(p);
+		universidade.addProfessor(p1);
 		universidade.addAluno(a);
 		universidade.addAluno(a2);
 		universidade.addSecretario(s);
 		universidade.addCurso(c);
+		universidade.addCurso(c1);
 		universidade.addDisciplina(d);
 		universidade.addDisciplina(d2);
 		universidade.addDisciplina(d3);
@@ -89,7 +93,9 @@ public class Aplicacao {
 		System.out.println("4 - Cadastrar Disciplinas");
 		System.out.println("5 - Remover Aluno");
 		System.out.println("6 - Remover Professor");
-		System.out.println("7 - Imprimir Dados");
+		System.out.println("7 - Remover Curso");
+		System.out.println("8 - Remover Disciplina");
+		System.out.println("9 - Imprimir Dados");
 		System.out.println("0 - Sair");
 		System.out.println("Insira uma opção:");
 
@@ -106,7 +112,21 @@ public class Aplicacao {
 			case 3:
 				cadastrarCurso(teclado, univ, u);
 				break;
+			case 4: 
+				cadastrarDisciplina (teclado, univ, u);
+				break;
+			case 5:
+				removerAluno(teclado, univ, u);
+				break;
+			case 6:
+				removerProfessor(teclado, univ, u);
+				break;
 			case 7:
+				removerCurso(teclado, univ, u);
+				break;
+			case 8:
+				removerDisciplina(teclado, univ, u);
+			case 9:
 				imprimirDados(teclado, univ, u);
 				break;
 			}
@@ -165,7 +185,82 @@ public class Aplicacao {
 		menuSecretario(univ, teclado, u);
 
 	}
+	
+	public static void removerCurso (Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nQual curso deseja remover? ");
+		int i = 1;
+		for(Curso c: univ.getCursos()) {
+			System.out.println(i + "-" + c.getNome());
+			i++;
+		}
+		int op = teclado.nextInt();
+		i = 1;
+		for(Curso c: univ.getCursos()) {
+			if (i == op) {
+				univ.removeCurso(c);		
+			}
+			i++;
+		}
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+	}
 
+	private static void cadastrarDisciplina (Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nEm qual curso deseja cadastrar nova disciplina? ");
+		int i = 1;
+		for(Curso c: univ.getCursos()) {
+			System.out.println(i + "-" + c.getNome());
+			i++;
+		}
+		int op = teclado.nextInt();
+		i = 1;
+		System.out.println("\nNome da disciplina: ");
+		String name = teclado.next();
+		System.out.println("\nÉ uma disciplina optativa? ");
+		String optativa = teclado.next();
+		System.out.println("\nQual o valor dessa disciplina? ");
+		double valor = teclado.nextDouble();
+		boolean optativ = isOptativa(optativa);
+		for(Curso c: univ.getCursos()) {
+			if (i == op) {
+				Disciplina nova = new Disciplina (name, optativ, valor);
+				c.addDisciplina(nova);
+			}
+			i++;
+		}
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+	}
+	
+	private static boolean isOptativa (String optativa) {
+		if (optativa.equalsIgnoreCase("sim")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	private static void removerDisciplina (Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nQual disciplina deseja remover? ");
+		int i = 1;
+		for(Disciplina d: univ.getDisciplinas()) {
+			System.out.println(i + "-" + d.getNome());
+			i++;
+		}
+		int op = teclado.nextInt();
+		i = 1;
+		for(Disciplina d: univ.getDisciplinas()) {
+			if (op == i) {
+				univ.removeDisciplina(d);
+			}
+			i++;
+		}
+			
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+	}
+	
 	private static void cadastrarProfessor(Scanner teclado, Universidade univ, User u) {
 		Professor p = new Professor();
 		System.out.println("\nCADASTRAR PROFESSOR:\n");
@@ -197,6 +292,25 @@ public class Aplicacao {
 		univ.addProfessor(p);
 
 		System.out.println("Professor Cadastrado!");
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+	}
+	
+	private static void removerProfessor (Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nQual professor deseja remover? ");
+		int i = 1;
+		for(Professor p: univ.getProfessores()) {
+			System.out.println(i + "-" + p.getNome());
+			i++;
+		}
+		int op = teclado.nextInt();
+		i = 1;
+		for(Professor p: univ.getProfessores()) {
+			if (i == op) {
+				univ.removeProfessor(p);
+			}
+			i++;
+		}
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -243,6 +357,25 @@ public class Aplicacao {
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 
+	}
+	
+	private static void removerAluno (Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nQual aluno deseja remover? ");
+		int i = 1;
+		for(Aluno a: univ.getAlunos()) {
+			System.out.println(i + "-" + a.getNome());
+			i++;
+		}
+		int op = teclado.nextInt();
+		i = 1;
+		for(Aluno a: univ.getAlunos()) {
+			if (i == op) {
+				univ.removeAluno(a);
+			}
+			i++;
+		}
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
 	}
 
 	private static void imprimirDados(Scanner teclado, Universidade univ, User u) {
