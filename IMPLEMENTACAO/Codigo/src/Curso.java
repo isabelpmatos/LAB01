@@ -46,4 +46,22 @@ public class Curso {
 	public void removeDisciplina(Disciplina disciplina) {
 		disciplinas.remove(disciplina);
 	}
+	public int retornaIndex(String nomeDisciplina) {
+		int index = 0;
+		while(!(nomeDisciplina.contentEquals(this.disciplinas.get(index).getNome()))) {
+			index++;
+		}
+		return index;
+	}
+	public Boolean contemDisciplina(String nomeDisciplina) {
+		boolean contem = false;
+		
+		for(int i = 0; i < this.disciplinas.size(); i++) {
+			if(nomeDisciplina.equals(this.disciplinas.get(i).getNome())) {
+				contem = true;
+			}
+		}
+		
+		return contem;
+	}
 }

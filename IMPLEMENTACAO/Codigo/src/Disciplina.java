@@ -13,6 +13,16 @@ public class Disciplina {
 	private double valor;
 	private ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
 	
+	public Disciplina() {
+		
+	}
+	
+	public Disciplina(String nome) {
+		this.nome = nome;
+		this.isOptativa = false;
+		this.valor = 0;
+	}
+	
 	public Disciplina(String nome, boolean isOptativa, double valor) {
 		this.nome = nome;
 		this.isOptativa = isOptativa;

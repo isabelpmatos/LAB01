@@ -1,0 +1,3 @@
+Engenharia de Software,5,AED1;DIW;Fundamentos de Engenharia de Software;
+Engenharia Civil,5,Calculo 1;Fisica 1;Quimica 1
+Engenharia de Testes,5,AED1;Fundamentos de Engenharia de Software

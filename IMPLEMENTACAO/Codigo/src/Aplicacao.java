@@ -8,9 +8,24 @@ public class Aplicacao {
 
 		Scanner teclado = new Scanner(System.in);
 		Universidade universidade = new Universidade();
+		Files files = new Files();
+		files.carregarCursos(universidade);
+		files.carregarAlunos(universidade);
+		files.carregarDisciplinas(universidade);
+		
+		files.carregarProfessores(universidade);
+		files.carregarOfertas(universidade);
+		files.carregarSecretarios(universidade);
 
+		Professor p = universidade.getProfessorPorNome("Teste");
+		//System.out.println(p.getOfertasMinistradas().get(0).getDisciplina().getNome());
+		
+		System.out.println(universidade.getDisciplinas().get(2).getNome() + universidade.getDisciplinas().get(2).getValor());
+		System.out.println(universidade.getDisciplinas().get(1).getNome());
+		
 		//Dados de teste
 
+		/*
 		Professor p = new Professor("profe", "12345", "Pedro da Silva");
 		Professor p1 = new Professor("profe1", "6789", "Amarildo Ferreira");
 		Curso c = new Curso("Engenharia de software", 5);
@@ -24,7 +39,7 @@ public class Aplicacao {
 		Aluno a = new Aluno("luiza", "lu123", "Luiza", c, 123, 2);
 		Aluno a2 = new Aluno("jp", "joao123", "João Pedro", c, 1234, 2);
 		Secretario s = new Secretario("sec", "sec123", "Patricia");
-
+		
 		universidade.addProfessor(p);
 		universidade.addProfessor(p1);
 		universidade.addAluno(a);
@@ -46,6 +61,7 @@ public class Aplicacao {
 		p.addOferta(o);
 		p.addOferta(o2);
 		p.addOferta(o3);
+		*/
 
 		validarLogin(universidade, teclado);
 	}
@@ -135,16 +151,26 @@ public class Aplicacao {
 	}
 
 	private static void cadastrarCurso(Scanner teclado, Universidade univ, User u) {
+		Files files = new Files();
+		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
+		String content = "";
+		
 		Curso c = new Curso();
 		System.out.println("\nCADASTRAR CURSO:\n");
 
 		System.out.println("Nome:");
 		c.setNome(teclado.nextLine());
 
+		content = c.getNome();
+		content = content.concat(",");
+		
 		System.out.println("Número de Créditos:");
 		c.setNumCreditos(teclado.nextInt());
 		teclado.nextLine();
 
+		content = content.concat(Integer.toString(c.getNumCreditos()));
+		content = content.concat(",");
+		
 		int opcao = 1;
 		do {
 			System.out.println("Deseja inserir uma disciplina?");
@@ -161,14 +187,23 @@ public class Aplicacao {
 				}
 				System.out.println("Insira uma opção:");
 				int op = teclado.nextInt();
+				
+				if(!(content.endsWith(","))) {
+					content = content.concat(";");
+				}
+				
 				Disciplina d = univ.getDisciplinas().get(op - 1);
 				c.addDisciplina(d);;
+				
+				content = content.concat(d.getNome());
+				
+				
 				teclado.nextLine();
 			}
 		}while(opcao != 2);
-
+		System.out.println(content);
 		univ.addCurso(c);
-
+		files.escreveArquivo(path, content);
 		System.out.println("Curso Cadastrado!\n");
 		
 		teclado.nextLine();
@@ -206,6 +241,12 @@ public class Aplicacao {
 	}
 
 	private static void cadastrarDisciplina (Scanner teclado, Universidade univ, User u) {
+		Files files = new Files();
+		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		String pathCursos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
+		//falta escrever no curso.txt a disciplina cadastrada
+		String content = "";
+		
 		System.out.println("\nEm qual curso deseja cadastrar nova disciplina? ");
 		int i = 1;
 		for(Curso c: univ.getCursos()) {
@@ -216,15 +257,27 @@ public class Aplicacao {
 		i = 1;
 		System.out.println("\nNome da disciplina: ");
 		String name = teclado.next();
+		
+		content = name;
+		content = content.concat(",");
+		
 		System.out.println("\nÉ uma disciplina optativa? ");
 		String optativa = teclado.next();
+		
 		System.out.println("\nQual o valor dessa disciplina? ");
 		double valor = teclado.nextDouble();
+		
 		boolean optativ = isOptativa(optativa);
 		for(Curso c: univ.getCursos()) {
 			if (i == op) {
 				Disciplina nova = new Disciplina (name, optativ, valor);
+				content = content.concat(Boolean.toString(optativ)).concat(",");
+				content = content.concat(Double.toString(valor).concat(",")).concat("false").concat(", ");
+				System.out.println(content);
 				c.addDisciplina(nova);
+				univ.addDisciplina(nova);
+				files.escreveArquivo(path, content);
+				System.out.println("Disciplina adicionada!");
 			}
 			i++;
 		}
@@ -262,20 +315,36 @@ public class Aplicacao {
 	}
 	
 	private static void cadastrarProfessor(Scanner teclado, Universidade univ, User u) {
+		Files files = new Files();
+		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\professores.txt";
+		String pathOfertas= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		String content = "";
+		String contentOferta = "";
+		
 		Professor p = new Professor();
 		System.out.println("\nCADASTRAR PROFESSOR:\n");
-
-		System.out.println("Nome:");
-		p.setNome(teclado.nextLine());;
 
 		System.out.println("Usuário:");
 		p.setUsuario(teclado.next());
 		teclado.nextLine();
 
+		content = p.getUsuario();
+		content = content.concat(",");
+		
 		System.out.println("Senha:");
 		p.setSenha(teclado.next());
 		teclado.nextLine();
 
+		content = content.concat(p.getSenha());
+		content = content.concat(",");
+		
+		System.out.println("Nome:");
+		p.setNome(teclado.nextLine());;
+		
+		content = content.concat(p.getNome());
+		String contentNome = p.getNome();
+		content = content.concat(",");
+		
 		System.out.println("Disciplina a ser ministrada:");
 		int i = 1;
 		for(Disciplina d: univ.getDisciplinas()) {
@@ -286,11 +355,25 @@ public class Aplicacao {
 		int opcao = teclado.nextInt();
 		Disciplina d = univ.getDisciplinas().get(opcao - 1);
 		Oferta o = d.getOfertas().get(0);
+		System.out.println(o.getId());
 		p.addOferta(o);;
+		
+		String contentId = Integer.toString(p.getOfertasMinistradas().get(0).getId());
+		String contentNomeDisciplina = p.getOfertasMinistradas().get(0).getDisciplina().getNome();
+		
+		contentOferta = contentId.concat(",").concat(contentNomeDisciplina).concat(",").concat(contentNome);
+		System.out.println(contentOferta);
+		
+		content = content.concat(Integer.toString(p.getOfertasMinistradas().get(0).getId()));
+		
 		teclado.nextLine();
 
 		univ.addProfessor(p);
-
+		
+		files.escreveArquivo(path, content);
+		files.escreveArquivo(pathOfertas, contentOferta);
+		
+		System.out.println(content);
 		System.out.println("Professor Cadastrado!");
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
@@ -316,21 +399,34 @@ public class Aplicacao {
 	}
 
 	private static void cadastrarAluno(Scanner teclado, Universidade univ, User u) {
-
+		
+		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\alunos.txt";
+		Files files = new Files();
+		String content = "";
+		
 		Aluno a = new Aluno();
 		System.out.println("\nCADASTRAR ALUNO:\n");
-
-		System.out.println("Nome:");
-		a.setNome(teclado.nextLine());
-
+		
 		System.out.println("Usuário:");
 		a.setUsuario(teclado.next());
 		teclado.nextLine();
 
+		content = a.getUsuario();
+		content = content.concat(",");
+		
 		System.out.println("Senha:");
 		a.setSenha(teclado.next());
 		teclado.nextLine();
 
+		content = content.concat(a.getSenha());
+		content = content.concat(",");
+		
+		System.out.println("Nome:");
+		a.setNome(teclado.nextLine());
+
+		content = content.concat(a.getNome());
+		content = content.concat(",");
+		
 		System.out.println("Curso:");
 		int i = 1;
 		for(Curso c: univ.getCursos()) {
@@ -341,16 +437,27 @@ public class Aplicacao {
 		int opcao = teclado.nextInt();
 		Curso c = univ.getCursos().get(opcao - 1);
 		a.setCurso(c);;
+		
+		content = content.concat(a.getCurso().getNome());
+		content = content.concat(",");
+		
 		teclado.nextLine();
 
 		System.out.println("Código do aluno:");
 		a.setCodigoDoAluno(teclado.nextInt());
 		teclado.nextLine();
 
+		content = content.concat(Integer.toString(a.getCodigoDoAluno()));
+		content = content.concat(",");
+		
 		System.out.println("Período do curso:");
 		a.setPeriodo(teclado.nextInt());
 		teclado.nextLine();
 
+		content = content.concat(Integer.toString(a.getperiodo()));
+		
+		files.escreveArquivo(path, content);
+		
 		univ.addAluno(a);
 
 		System.out.println("Aluno cadastrado!");

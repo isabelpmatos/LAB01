@@ -3,14 +3,19 @@ package app;
 import java.util.ArrayList;
 
 public class Oferta {
-	
+	private int id;
 	private Disciplina disciplina;
 	private Professor professor;
 	private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 	
-	public Oferta(Disciplina disciplina, Professor professor) {
+	public Oferta(int id, Disciplina disciplina, Professor professor) {
+		this.id = id;
 		this.setDisciplina(disciplina);
 		this.setProfessor(professor);
+	}
+	
+	public Oferta() {
+		
 	}
 	
 	public ArrayList<Aluno> getAlunos() {
@@ -37,6 +42,14 @@ public class Oferta {
 		this.professor = professor;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void addAluno(Aluno aluno) {
 		alunos.add(aluno);
 	}

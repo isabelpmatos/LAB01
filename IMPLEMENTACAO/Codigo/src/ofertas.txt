@@ -1,0 +1,5 @@
+1,AED1,Roberto Felipe
+2,DIW,Rommel
+3,Fundamentos de Engenharia de Software,Guta
+4,Calculo 1,Jane Garandy
+4,Calculo 1,Mariana
