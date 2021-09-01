@@ -42,6 +42,62 @@ public class Universidade {
 		return cursos;
 	}
 
+	public Curso getCursoPorNome(String nomeCurso) {
+		String aux = "";
+		int i = 0;
+		while(aux.length() != nomeCurso.length()) {
+			aux = this.cursos.get(i).getNome();
+			i++;
+		}
+		if(aux.length() == nomeCurso.length()) {
+			return this.cursos.get(i - 1);
+		}
+		else {
+			return new Curso();
+		}
+	}
+	public Disciplina getDisciplinaPorNome(String nomeDisciplina) {
+		String aux = "";
+		int i = 0;
+		while(aux.length() != nomeDisciplina.length()) {
+			aux = this.disciplinas.get(i).getNome();
+			i++;
+		}
+		if(aux.length() == nomeDisciplina.length()) {
+			return this.disciplinas.get(i - 1);
+		}
+		else {
+			return new Disciplina();
+		}
+	}
+	public Professor getProfessorPorNome(String nomeProfessor) {
+		String aux = "";
+		int i = 0;
+		while(!(aux.equals(nomeProfessor))) {
+			aux = this.professores.get(i).getNome();
+			i++;
+		}
+		if(aux.equals(nomeProfessor)) {
+			return this.professores.get(i - 1);
+		}
+		else {
+			return new Professor();
+		}
+	}
+	public Aluno getAlunoPorCodigo(int codigoAluno) {
+		int aux = 0;
+		int i = 0;
+		while(aux != codigoAluno) {
+			aux = this.alunos.get(i).getCodigoDoAluno();
+			i++;
+		}
+		if(aux == codigoAluno) {
+			return this.alunos.get(i - 1);
+		}
+		else {
+			return new Aluno();
+		}
+	}
 	public ArrayList<Secretario> getSecretarios() {
 		return secretarios;
 	}

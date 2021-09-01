@@ -33,5 +33,20 @@ public class Professor extends User {
 		return disciplina.getAlunos();
 	}
 	
+	public Oferta getOfertaPorId(int id) {
+		int aux = 0;
+		int i = 0;
+		while(aux != id) {
+			aux = this.getOfertasMinistradas().get(i).getId();
+			i++;
+		}
+		if(aux == id) {
+			return this.getOfertasMinistradas().get(i - 1);
+		}
+		else {
+			return new Oferta();
+		}
+	}
+	
 }
 

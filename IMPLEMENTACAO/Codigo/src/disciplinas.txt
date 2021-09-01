@@ -1,0 +1,5 @@
+AED1,false,250,true,547;601;45;89,1
+DIW,false,250,true,547;601;45;89,2
+Fundamentos de Engenharia de Software,false,250,true,547;601;45;89,3
+Calculo 1,false,250,true,547;601;45,4
+Macacologia,false,250.0,false,
