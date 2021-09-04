@@ -100,5 +100,18 @@ public class Disciplina {
 	public void removeOferta(Oferta o) {
 		ofertas.remove(o);
 	}
-	
+	public Oferta getOfertaPorId(int id) {
+		int aux = 0;
+		int i = 0;
+		while(aux != id) {
+			aux = this.ofertas.get(i).getId();
+			i++;
+		}
+		if(aux == id) {
+			return this.ofertas.get(i - 1);
+		}
+		else {
+			return new Oferta();
+		}
+	}
 }

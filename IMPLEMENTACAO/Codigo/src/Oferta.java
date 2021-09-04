@@ -6,14 +6,20 @@ public class Oferta {
 	private int id;
 	private Disciplina disciplina;
 	private Professor professor;
+	private boolean temProfessor;
 	private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 	
 	public Oferta(int id, Disciplina disciplina, Professor professor) {
 		this.id = id;
 		this.setDisciplina(disciplina);
 		this.setProfessor(professor);
+		this.temProfessor = true;
 	}
-	
+	public Oferta(int id, Disciplina disciplina) {
+		this.id = id;
+		this.setDisciplina(disciplina);
+		this.temProfessor = false;
+	}
 	public Oferta() {
 		
 	}
@@ -40,6 +46,7 @@ public class Oferta {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+		this.temProfessor = true;
 	}
 	
 	public int getId() {
@@ -49,7 +56,13 @@ public class Oferta {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	public boolean isTemProfessor() {
+		return temProfessor;
+	}
+	public void setTemProfessor(boolean temProfessor) {
+		this.temProfessor = temProfessor;
+	}
 	public void addAluno(Aluno aluno) {
 		alunos.add(aluno);
 	}

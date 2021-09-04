@@ -16,12 +16,29 @@ public class Aplicacao {
 		files.carregarProfessores(universidade);
 		files.carregarOfertas(universidade);
 		files.carregarSecretarios(universidade);
-
-		Professor p = universidade.getProfessorPorNome("Teste");
+		/*
+		for(Curso c: universidade.getCursos()) {
+			System.out.println(c.getNome() + " ------------------");
+			for(Disciplina d: c.getDisciplinas()) {
+				System.out.println(d.getNome() + " _________________");
+				for(Oferta o: d.getOfertas()) {
+					System.out.println("id: "+o.getId());
+				}
+			}
+		}*/
+		/*
+		System.out.println("For PODRE-------------");
+		for(Disciplina d: universidade.getDisciplinas()) {
+			System.out.println(d.getNome());
+			for(Oferta o: d.getOfertas()) {
+				System.out.println(o.getId());
+			}
+		}*/
+		//Professor p = universidade.getProfessorPorNome("Teste");
 		//System.out.println(p.getOfertasMinistradas().get(0).getDisciplina().getNome());
 		
-		System.out.println(universidade.getDisciplinas().get(2).getNome() + universidade.getDisciplinas().get(2).getValor());
-		System.out.println(universidade.getDisciplinas().get(1).getNome());
+		//System.out.println(universidade.getDisciplinas().get(2).getNome() + universidade.getDisciplinas().get(2).getValor());
+		//System.out.println(universidade.getDisciplinas().get(1).getNome());
 		
 		//Dados de teste
 
@@ -244,8 +261,13 @@ public class Aplicacao {
 		Files files = new Files();
 		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
 		String pathCursos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
-		//falta escrever no curso.txt a disciplina cadastrada
+		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		
+		
+		//falta escrever no curso.txt a disciplina cadastrada - NAO MAIS
 		String content = "";
+		String contentCursos = "";
+		String contentOfertas = "";
 		
 		System.out.println("\nEm qual curso deseja cadastrar nova disciplina? ");
 		int i = 1;
@@ -272,14 +294,28 @@ public class Aplicacao {
 			if (i == op) {
 				Disciplina nova = new Disciplina (name, optativ, valor);
 				content = content.concat(Boolean.toString(optativ)).concat(",");
-				content = content.concat(Double.toString(valor).concat(",")).concat("false").concat(", ");
+				content = content.concat(Double.toString(valor).concat(",")).concat("false").concat(", ,");
+				System.out.println("Qual o id da oferta? ");
+				int id = teclado.nextInt();
+				content = content.concat(Integer.toString(id));
 				System.out.println(content);
 				c.addDisciplina(nova);
 				univ.addDisciplina(nova);
 				files.escreveArquivo(path, content);
+				
+				String nomeCurso = c.getNome();
+				contentCursos = name;
+				files.escreveDisciplinaNoCurso(nomeCurso, pathCursos, contentCursos, univ);
+				contentOfertas = Integer.toString(id);
+				contentOfertas = contentOfertas.concat(",").concat(nova.getNome()).concat(",");
+				System.out.println(contentOfertas);
+				files.escreveArquivo(pathOfertas, contentOfertas);
 				System.out.println("Disciplina adicionada!");
 			}
 			i++;
+		}
+		for(Disciplina d: univ.getCursos().get(0).getDisciplinas()) {
+			System.out.println(d.getNome());
 		}
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
@@ -318,8 +354,12 @@ public class Aplicacao {
 		Files files = new Files();
 		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\professores.txt";
 		String pathOfertas= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		String pathUsers= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\users.txt";
+		String pathDisciplinas= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		
 		String content = "";
 		String contentOferta = "";
+		String contentUsers= "";
 		
 		Professor p = new Professor();
 		System.out.println("\nCADASTRAR PROFESSOR:\n");
@@ -336,6 +376,7 @@ public class Aplicacao {
 		teclado.nextLine();
 
 		content = content.concat(p.getSenha());
+		contentUsers = content;
 		content = content.concat(",");
 		
 		System.out.println("Nome:");
@@ -357,6 +398,15 @@ public class Aplicacao {
 		Oferta o = d.getOfertas().get(0);
 		System.out.println(o.getId());
 		p.addOferta(o);;
+		univ.getDisciplinas().get(opcao - 1).getOfertas().get(0).setProfessor(p);;
+		for(Curso c: univ.getCursos()) {
+			for(Disciplina dis: c.getDisciplinas()) {
+				if (dis.getNome().equals(d.getNome())){
+					System.out.println(dis.getNome() + " = " + d.getNome());
+					dis.getOfertas().get(0).setProfessor(p);
+				}
+			}
+		}
 		
 		String contentId = Integer.toString(p.getOfertasMinistradas().get(0).getId());
 		String contentNomeDisciplina = p.getOfertasMinistradas().get(0).getDisciplina().getNome();
@@ -369,9 +419,20 @@ public class Aplicacao {
 		teclado.nextLine();
 
 		univ.addProfessor(p);
-		
+		o.setProfessor(p);
 		files.escreveArquivo(path, content);
-		files.escreveArquivo(pathOfertas, contentOferta);
+		
+		//essa porra aqui V
+		
+		//files.escreveArquivo(pathOfertas, contentOferta);
+		
+		//files.escreveProfessorEmOferta(o.getId(), pathOfertas, univ, d);
+		
+		files.escreveOfertaNaDisciplina(d.getNome(), pathDisciplinas, univ);
+		
+		files.escreveProfessorEmOferta(o.getId(), pathOfertas, univ, d);
+		
+		files.escreveArquivo(pathUsers, contentUsers);
 		
 		System.out.println(content);
 		System.out.println("Professor Cadastrado!");
@@ -401,8 +462,11 @@ public class Aplicacao {
 	private static void cadastrarAluno(Scanner teclado, Universidade univ, User u) {
 		
 		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\alunos.txt";
+		String pathUsers = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\users.txt";
+		
 		Files files = new Files();
 		String content = "";
+		String contentUsers = "";
 		
 		Aluno a = new Aluno();
 		System.out.println("\nCADASTRAR ALUNO:\n");
@@ -419,6 +483,7 @@ public class Aplicacao {
 		teclado.nextLine();
 
 		content = content.concat(a.getSenha());
+		contentUsers = content;
 		content = content.concat(",");
 		
 		System.out.println("Nome:");
@@ -457,6 +522,7 @@ public class Aplicacao {
 		content = content.concat(Integer.toString(a.getperiodo()));
 		
 		files.escreveArquivo(path, content);
+		files.escreveArquivo(pathUsers, contentUsers);
 		
 		univ.addAluno(a);
 

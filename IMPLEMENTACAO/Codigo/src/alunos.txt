@@ -4,3 +4,4 @@ pipo,123,Pedro Vega,Engenharia de Software,45,1
 lucas,123,Lucas Moura,Engenharia de Software,89,1
 edumonico,123,Eduardo Monico,Engenharia de Software,78,1
 marcinho,123,Marcio Costa,Engenharia de Testes,90,1
+malcomX,blackpanthers,Malcom,Engenharia Civil,87,1

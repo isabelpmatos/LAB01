@@ -1,5 +1,9 @@
-AED1,false,250,true,547;601;45;89,1
-DIW,false,250,true,547;601;45;89,2
-Fundamentos de Engenharia de Software,false,250,true,547;601;45;89,3
-Calculo 1,false,250,true,547;601;45,4
-Macacologia,false,250.0,false,
+AED1,false,250.0,true,547;601;45;89;,547;601;45;89;1;1;
+DIW,false,250.0,true,547;601;45;89;,547;601;45;89;2;2;2;
+Fundamentos de Engenharia de Software,false,250.0,true,547;601;45;89;,547;601;45;89;3;
+Calculo 1,false,250.0,true,547;601;45;,547;601;45;
+Janela,false,250.0,true,,
+Bangu,false,250.0,true,,56;
+Dor,false,250.0,true,,
+Russia,false,250.0,true,,
+Bangulandia,false,250.0,true,,

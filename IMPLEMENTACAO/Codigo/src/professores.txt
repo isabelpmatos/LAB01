@@ -5,3 +5,6 @@ jane,123,Jane Garandy,4
 mauro,123,Mauro Cezar,4
 teste,123,Teste,1
 mari,123,Mariana,4
+girafales,123,Girafales,2
+hugo,123,Hugo,1
+paul,123,Paul,2
