@@ -39,6 +39,21 @@ public class Curso {
 		this.disciplinas = disciplinas;
 	}
 
+	public Disciplina getDisciplinaPorNome(String nomeDisciplina) {
+		String aux = "";
+		int i = 0;
+		while(!(aux.equals(nomeDisciplina))) {
+			aux = this.disciplinas.get(i).getNome();
+			i++;
+		}
+		if(aux.length() == nomeDisciplina.length()) {
+			return this.disciplinas.get(i - 1);
+		}
+		else {
+			return new Disciplina();
+		}
+	}
+	
 	public void addDisciplina(Disciplina disciplina) {
 		disciplinas.add(disciplina);
 	}
