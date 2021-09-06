@@ -17,30 +17,6 @@ public class Aplicacao {
 		files.carregarOfertas(universidade);
 		files.carregarSecretarios(universidade);
 		
-		/*
-		for(Curso c: universidade.getCursos()) {
-			System.out.println(c.getNome() + " ------------------");
-			for(Disciplina d: c.getDisciplinas()) {
-				System.out.println(d.getNome() + " _________________");
-				for(Oferta o: d.getOfertas()) {
-					System.out.println("id: "+o.getId());
-				}
-			}
-		}*/
-		/*
-		System.out.println("For PODRE-------------");
-		for(Disciplina d: universidade.getDisciplinas()) {
-			System.out.println(d.getNome());
-			for(Oferta o: d.getOfertas()) {
-				System.out.println(o.getId());
-			}
-		}*/
-		//Professor p = universidade.getProfessorPorNome("Teste");
-		//System.out.println(p.getOfertasMinistradas().get(0).getDisciplina().getNome());
-		
-		//System.out.println(universidade.getDisciplinas().get(2).getNome() + universidade.getDisciplinas().get(2).getValor());
-		//System.out.println(universidade.getDisciplinas().get(1).getNome());
-		
 		validarLogin(universidade, teclado);
 	}
 
@@ -169,7 +145,8 @@ public class Aplicacao {
 		
 		System.out.println("Nome atual: " + d.getNome());
 		System.out.println("Digite o novo nome: ");
-		d.setNome(teclado.nextLine());
+		String resp = teclado.next();
+		d.setNome(resp);
 		teclado.nextLine();
 		
 		System.out.println("Valor atual: " + d.getValor());
@@ -208,9 +185,10 @@ public class Aplicacao {
 		
 		System.out.println("Nome atual: " + c.getNome());
 		System.out.println("Digite o novo nome: ");
-		c.setNome(teclado.nextLine());
+		String resp = teclado.next();
+		c.setNome(resp);
 		teclado.nextLine();
-		
+
 		System.out.println("Número de Créditos atual: " + c.getNumCreditos());
 		System.out.println("Digite a nova quantidade de créditos: ");
 		c.setNumCreditos(teclado.nextInt());
