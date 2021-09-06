@@ -70,6 +70,20 @@ public class Universidade {
 			return new Disciplina();
 		}
 	}
+	public Aluno getAlunoPorNome(String nomeAluno) {
+		String aux = "";
+		int i = 0;
+		while(!(aux.equals(nomeAluno))) {
+			aux = this.alunos.get(i).getNome();
+			i++;
+		}
+		if(aux.equals(nomeAluno)) {
+			return this.alunos.get(i - 1);
+		}
+		else {
+			return new Aluno();
+		}
+	}
 	public Professor getProfessorPorNome(String nomeProfessor) {
 		String aux = "";
 		int i = 0;

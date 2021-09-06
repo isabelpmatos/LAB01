@@ -16,6 +16,11 @@ public class Aplicacao {
 		files.carregarProfessores(universidade);
 		files.carregarOfertas(universidade);
 		files.carregarSecretarios(universidade);
+		
+		for(Aluno a: universidade.getAlunos()) {
+			System.out.println(a.getNome());
+		}
+		
 		/*
 		for(Curso c: universidade.getCursos()) {
 			System.out.println(c.getNome() + " ------------------");
@@ -247,12 +252,14 @@ public class Aplicacao {
 		}
 		int op = teclado.nextInt();
 		i = 1;
+		String nomeCurso = "";
 		for(Curso c: univ.getCursos()) {
 			if (i == op) {
-				univ.removeCurso(c);		
+				nomeCurso = c.getNome();		
 			}
 			i++;
 		}
+		univ.removeCurso(univ.getCursoPorNome(nomeCurso));
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -339,13 +346,14 @@ public class Aplicacao {
 		}
 		int op = teclado.nextInt();
 		i = 1;
+		String nomeDisciplina = "";
 		for(Disciplina d: univ.getDisciplinas()) {
 			if (op == i) {
-				univ.removeDisciplina(d);
+				nomeDisciplina = d.getNome();
 			}
 			i++;
 		}
-			
+		univ.removeDisciplina(univ.getDisciplinaPorNome(nomeDisciplina));
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -449,12 +457,14 @@ public class Aplicacao {
 		}
 		int op = teclado.nextInt();
 		i = 1;
+		String nomeProfessor = "";
 		for(Professor p: univ.getProfessores()) {
 			if (i == op) {
-				univ.removeProfessor(p);
+				nomeProfessor = p.getNome();
 			}
 			i++;
 		}
+		univ.removeProfessor(univ.getProfessorPorNome(nomeProfessor));
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -541,12 +551,14 @@ public class Aplicacao {
 		}
 		int op = teclado.nextInt();
 		i = 1;
+		String nomeAluno = "";
 		for(Aluno a: univ.getAlunos()) {
-			if (i == op) {
-				univ.removeAluno(a);
+			if(i == op) {
+				nomeAluno = a.getNome();
 			}
 			i++;
 		}
+		univ.removeAluno(univ.getAlunoPorNome(nomeAluno));
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
