@@ -41,46 +41,6 @@ public class Aplicacao {
 		//System.out.println(universidade.getDisciplinas().get(2).getNome() + universidade.getDisciplinas().get(2).getValor());
 		//System.out.println(universidade.getDisciplinas().get(1).getNome());
 		
-		//Dados de teste
-
-		/*
-		Professor p = new Professor("profe", "12345", "Pedro da Silva");
-		Professor p1 = new Professor("profe1", "6789", "Amarildo Ferreira");
-		Curso c = new Curso("Engenharia de software", 5);
-		Curso c1 = new Curso("Filosofia", 6);
-		Disciplina d = new Disciplina("AED2", false, 200.00);
-		Disciplina d2 = new Disciplina("Arquitetura de computadores", false, 200.00);
-		Disciplina d3 = new Disciplina("Direito Civil", false, 250.00);
-		Oferta o = new Oferta(d, p);
-		Oferta o2 = new Oferta(d2, p);
-		Oferta o3 = new Oferta(d3, p);
-		Aluno a = new Aluno("luiza", "lu123", "Luiza", c, 123, 2);
-		Aluno a2 = new Aluno("jp", "joao123", "João Pedro", c, 1234, 2);
-		Secretario s = new Secretario("sec", "sec123", "Patricia");
-		
-		universidade.addProfessor(p);
-		universidade.addProfessor(p1);
-		universidade.addAluno(a);
-		universidade.addAluno(a2);
-		universidade.addSecretario(s);
-		universidade.addCurso(c);
-		universidade.addCurso(c1);
-		universidade.addDisciplina(d);
-		universidade.addDisciplina(d2);
-		universidade.addDisciplina(d3);
-		c.addDisciplina(d);
-		c.addDisciplina(d2);
-		d.addOferta(o);
-		d2.addOferta(o2);
-		d3.addOferta(o3);
-		d.addAluno(a);
-		d2.addAluno(a2);
-		d2.addAluno(a);
-		p.addOferta(o);
-		p.addOferta(o2);
-		p.addOferta(o3);
-		*/
-
 		validarLogin(universidade, teclado);
 	}
 
@@ -129,7 +89,11 @@ public class Aplicacao {
 		System.out.println("6 - Remover Professor");
 		System.out.println("7 - Remover Curso");
 		System.out.println("8 - Remover Disciplina");
-		System.out.println("9 - Imprimir Dados");
+		System.out.println("9 - Modificar Registro de um aluno");
+		System.out.println("10 - Modificar Registro de um professor");
+		System.out.println("11 - Modificar Registro de um curso");
+		System.out.println("12 - Modificar Registro de uma disciplina");
+		System.out.println("13 - Imprimir Dados");
 		System.out.println("0 - Sair");
 		System.out.println("Insira uma opção:");
 
@@ -160,12 +124,262 @@ public class Aplicacao {
 				break;
 			case 8:
 				removerDisciplina(teclado, univ, u);
+				break;
 			case 9:
+				updateAluno(teclado, univ, u);
+				break;
+			case 10:
+				updateProfessor(teclado, univ, u);
+				break;
+			case 11:
+				updateCurso(teclado, univ, u);
+				break;
+			case 12:
+				updateDisciplina(teclado, univ, u);
+				break;
+			case 13:
 				imprimirDados(teclado, univ, u);
 				break;
 			}
 		}while(opcao != 0);
 		validarLogin(univ, teclado);
+	}
+
+	private static void updateDisciplina(Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nSelecione uma disciplina para editar:");
+		int i = 1;
+		for(Disciplina d: univ.getDisciplinas()) {
+			System.out.println(i + "-" + d.getNome());
+			i++;
+		}
+		System.out.println("Insira uma opção:");
+		int op = teclado.nextInt();
+		
+		String nomeDisc = "";
+		i = 1;
+		for(Disciplina d: univ.getDisciplinas()) {
+			if(i == op) {
+				nomeDisc = d.getNome();
+			}
+			i++;
+		}
+		Disciplina d = univ.getDisciplinaPorNome(nomeDisc);
+		
+		System.out.println("\nDISCIPLINA:" + d.getNome() + "\n");
+		
+		
+		System.out.println("Nome atual: " + d.getNome());
+		System.out.println("Digite o novo nome: ");
+		d.setNome(teclado.nextLine());
+		teclado.nextLine();
+		
+		System.out.println("Valor atual: " + d.getValor());
+		System.out.println("Digite o novo valor: ");
+		d.setValor(teclado.nextDouble());
+		teclado.nextLine();
+
+		System.out.println("\nDisciplina Atualizada!");
+		
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+		
+	}
+
+	private static void updateCurso(Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nSelecione um curso para editar:");
+		int i = 1;
+		for(Curso c: univ.getCursos()) {
+			System.out.println(i + "-" + c.getNome());
+			i++;
+		}
+		System.out.println("Insira uma opção:");
+		int op = teclado.nextInt();
+		
+		String nomeCurso = "";
+		i = 1;
+		for(Curso c: univ.getCursos()) {
+			if(i == op) {
+				nomeCurso = c.getNome();
+			}
+			i++;
+		}
+		Curso c = univ.getCursoPorNome(nomeCurso);
+		
+		System.out.println("\nCURSO:" + c.getNome() + "\n");
+		
+		System.out.println("Nome atual: " + c.getNome());
+		System.out.println("Digite o novo nome: ");
+		c.setNome(teclado.nextLine());
+		teclado.nextLine();
+		
+		System.out.println("Número de Créditos atual: " + c.getNumCreditos());
+		System.out.println("Digite a nova quantidade de créditos: ");
+		c.setNumCreditos(teclado.nextInt());
+		teclado.nextLine();
+		
+		System.out.println("Disciplinas do curso: ");
+		i = 1;
+		for(Disciplina d: c.getDisciplinas()) {
+			System.out.println(i + "-" + d.getNome());
+			i++;
+		}
+		
+		int opcao = 1;
+		do {
+			System.out.println("Deseja inserir uma disciplina?");
+			System.out.println("1 - Sim");
+			System.out.println("2 - Não");
+			System.out.println("Insira uma opção:");
+			opcao = teclado.nextInt();
+			if (opcao == 1) {
+				System.out.println("\nDisciplinas disponíveis:");
+				i = 1;
+				for(Disciplina d: univ.getDisciplinas()) {
+					System.out.println(i + "-" + d.getNome());
+					i++;
+				}
+				System.out.println("Insira uma opção:");
+				op = teclado.nextInt();
+
+				Disciplina d = univ.getDisciplinas().get(op - 1);
+				c.addDisciplina(d);			
+				teclado.nextLine();
+			}
+		}while(opcao != 2);
+		teclado.nextLine();
+		
+		System.out.println("\nCurso Atualizado!");
+		
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+	}
+
+	private static void updateProfessor(Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nSelecione um professor para editar:");
+		int i = 1;
+		for(Professor p: univ.getProfessores()) {
+			System.out.println(i + "-" + p.getNome());
+			i++;
+		}
+		System.out.println("Insira uma opção:");
+		int op = teclado.nextInt();
+		
+		String nomeProfe = "";
+		i = 1;
+		for(Professor p: univ.getProfessores()) {
+			if(i == op) {
+				nomeProfe = p.getNome();
+			}
+			i++;
+		}
+		Professor p = univ.getProfessorPorNome(nomeProfe);
+		
+		System.out.println("\nPROFESSOR:" + p.getNome() + "\n");
+		
+		System.out.println("Usuário atual: " + p.getUsuario());
+		System.out.println("Digite o novo usuário: ");
+		p.setUsuario(teclado.next());
+		teclado.nextLine();
+		
+		System.out.println("Senha atual: " + p.getSenha());
+		System.out.println("Digite a nova senha: ");
+		p.setSenha(teclado.next());
+		teclado.nextLine();
+		
+		System.out.println("Nome atual: " + p.getNome());
+		System.out.println("Digite o novo nome: ");
+		p.setNome(teclado.nextLine());
+		
+		i = 1;
+		System.out.println("Disciplina ministrada: ");
+		for(Oferta o: p.getOfertasMinistradas()) {
+			System.out.println(i + "-" + o.getDisciplina().getNome());
+			i++;
+		}
+		System.out.println("\nDisciplina nova a ser ministrada:");
+		i = 1;
+		for(Disciplina d: univ.getDisciplinas()) {
+			System.out.println(i + "-" + d.getNome());
+			i++;
+		}
+		System.out.println("Insira uma opção:");
+		int opcao = teclado.nextInt();
+		Disciplina d = univ.getDisciplinas().get(opcao - 1);
+		Oferta o = d.getOfertas().get(0);
+		System.out.println(o.getId());
+		p.addOferta(o);
+		teclado.nextLine();
+		
+		System.out.println("\nProfessor Atualizado!");
+		
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);
+	}
+
+	private static void updateAluno(Scanner teclado, Universidade univ, User u) {
+		System.out.println("\nSelecione um aluno para editar:");
+		int i = 1;
+		for(Aluno a: univ.getAlunos()) {
+			System.out.println(i + "-" + a.getNome());
+			i++;
+		}
+		System.out.println("Insira uma opção:");
+		int op = teclado.nextInt();
+		
+		String nomeAluno = "";
+		i = 1;
+		for(Aluno a: univ.getAlunos()) {
+			if(i == op) {
+				nomeAluno = a.getNome();
+			}
+			i++;
+		}
+		Aluno a = univ.getAlunoPorNome(nomeAluno);
+		
+		System.out.println("\nALUNO:" + a.getNome() + "\n");
+		
+		System.out.println("Usuário atual: " + a.getUsuario());
+		System.out.println("Digite o novo usuário: ");
+		a.setUsuario(teclado.next());
+		teclado.nextLine();
+		
+		System.out.println("Senha atual: " + a.getSenha());
+		System.out.println("Digite a nova senha: ");
+		a.setSenha(teclado.next());
+		teclado.nextLine();
+		
+		System.out.println("Nome atual: " + a.getNome());
+		System.out.println("Digite o novo nome: ");
+		a.setNome(teclado.nextLine());
+		
+		System.out.println("Curso atual: " + a.getCurso().getNome());
+		System.out.println("Escolha o novo curso: ");
+		i = 1;
+		for(Curso c: univ.getCursos()) {
+			System.out.println(i + "-" + c.getNome());
+			i++;
+		}
+		System.out.println("Insira uma opção:");
+		int opcao = teclado.nextInt();
+		Curso c = univ.getCursos().get(opcao - 1);
+		a.setCurso(c);
+
+		teclado.nextLine();
+
+		System.out.println("Código do aluno atual: " + a.getCodigoDoAluno());
+		System.out.println("Digite o novo código: ");
+		a.setCodigoDoAluno(teclado.nextInt());
+		teclado.nextLine();
+		
+		System.out.println("Período do curso atual: " + a.getCodigoDoAluno());
+		System.out.println("Digite o novo período do curso: ");
+		a.setPeriodo(teclado.nextInt());
+		teclado.nextLine();
+
+		System.out.println("\nAluno atualizado!");
+		
+		teclado.nextLine();
+		menuSecretario(univ, teclado, u);	
 	}
 
 	private static void cadastrarCurso(Scanner teclado, Universidade univ, User u) {
@@ -265,7 +479,6 @@ public class Aplicacao {
 		String path = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\disciplinas.txt";
 		String pathCursos = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\cursos.txt";
 		String pathOfertas = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\ofertas.txt";
-		
 		
 		//falta escrever no curso.txt a disciplina cadastrada - NAO MAIS
 		String content = "";
@@ -507,7 +720,7 @@ public class Aplicacao {
 		System.out.println("Insira uma opção:");
 		int opcao = teclado.nextInt();
 		Curso c = univ.getCursos().get(opcao - 1);
-		a.setCurso(c);;
+		a.setCurso(c);
 		
 		content = content.concat(a.getCurso().getNome());
 		content = content.concat(",");
@@ -585,6 +798,7 @@ public class Aplicacao {
 		i = 1;
 		for(Curso c: univ.getCursos()) {
 			System.out.println(i + "- " + c.getNome());
+			System.out.println("   Créditos: " + c.getNumCreditos());
 			System.out.println("   Disciplinas do curso: ");
 			for(Disciplina d: c.getDisciplinas()) {
 				System.out.println("     - " + d.getNome());
