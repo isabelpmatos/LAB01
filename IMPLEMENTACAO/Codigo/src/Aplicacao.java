@@ -12,7 +12,6 @@ public class Aplicacao {
 		files.carregarCursos(universidade);
 		files.carregarAlunos(universidade);
 		files.carregarDisciplinas(universidade);
-		
 		files.carregarProfessores(universidade);
 		files.carregarOfertas(universidade);
 		files.carregarSecretarios(universidade);
@@ -877,6 +876,7 @@ public class Aplicacao {
 		Oferta oferta = disc.getOfertas().get(0);
 
 		a.addOferta(oferta);
+		oferta.getDisciplina().addAluno(a);
 
 		System.out.println("Matrícula efetuada!");
 		teclado.nextLine();
@@ -915,6 +915,7 @@ public class Aplicacao {
 
 		for(Aluno a: oferta.getDisciplina().getAlunos()) {
 			System.out.println(i + "-" + a.getNome());
+			i++;
 		}
 
 		teclado.nextLine();
