@@ -169,7 +169,7 @@ public class Aplicacao {
 
 	private static void cadastrarCurso(Scanner teclado, Universidade univ, User u) {
 		Files files = new Files();
-		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
+		String path = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\cursos.txt";
 		String content = "";
 		
 		Curso c = new Curso();
@@ -259,9 +259,9 @@ public class Aplicacao {
 
 	private static void cadastrarDisciplina (Scanner teclado, Universidade univ, User u) {
 		Files files = new Files();
-		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
-		String pathCursos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
-		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		String path = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\disciplinas.txt";
+		String pathCursos = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\cursos.txt";
+		String pathOfertas = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\ofertas.txt";
 		
 		
 		//falta escrever no curso.txt a disciplina cadastrada - NAO MAIS
@@ -352,10 +352,10 @@ public class Aplicacao {
 	
 	private static void cadastrarProfessor(Scanner teclado, Universidade univ, User u) {
 		Files files = new Files();
-		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\professores.txt";
-		String pathOfertas= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
-		String pathUsers= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\users.txt";
-		String pathDisciplinas= "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		String path = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\professores.txt";
+		String pathOfertas= "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\ofertas.txt";
+		String pathUsers= "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\users.txt";
+		String pathDisciplinas= "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\disciplinas.txt";
 		
 		String content = "";
 		String contentOferta = "";
@@ -461,8 +461,8 @@ public class Aplicacao {
 
 	private static void cadastrarAluno(Scanner teclado, Universidade univ, User u) {
 		
-		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\alunos.txt";
-		String pathUsers = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\users.txt";
+		String path = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\alunos.txt";
+		String pathUsers = "C:\\Users\\Isabel Pinheiro\\Documents\\Eng de software\\4ºperíodo\\eclipse\\LAB01\\src\\app\\users.txt";
 		
 		Files files = new Files();
 		String content = "";
@@ -556,27 +556,43 @@ public class Aplicacao {
 		int i = 1;
 		for(Aluno a: univ.getAlunos()) {
 			System.out.println(i + "-" + a.getNome());
+			System.out.println("     - Curso: " + a.getCurso().getNome());
+			System.out.println("     - Período: " + a.getperiodo());
+			System.out.println("     - Código do aluno: " + a.getCodigoDoAluno());
 			i++;
 		}
 
 		System.out.println("\nPROFESSORES: ");
 		i = 1;
 		for(Professor p: univ.getProfessores()) {
-			System.out.println(i + "-" + p.getNome());
+			System.out.println(i + "- " + p.getNome());
+			System.out.println("   Disciplinas ministradas: ");
+			for(Oferta o:p.getOfertasMinistradas()) {
+				System.out.println("     - " + o.getDisciplina().getNome());
+			}
 			i++;
 		}
 
 		System.out.println("\nCURSOS: ");
 		i = 1;
 		for(Curso c: univ.getCursos()) {
-			System.out.println(i + "-" + c.getNome());
+			System.out.println(i + "- " + c.getNome());
+			System.out.println("   Disciplinas do curso: ");
+			for(Disciplina d: c.getDisciplinas()) {
+				System.out.println("     - " + d.getNome());
+			}
 			i++;
 		}
 
 		System.out.println("\nDISCIPLINAS: ");
 		i = 1;
 		for(Disciplina d: univ.getDisciplinas()) {
-			System.out.println(i + "-" + d.getNome());
+			System.out.println(i + "- " + d.getNome());
+			System.out.println("     - Valor: " + d.getValor());
+			System.out.println("     - Alunos: ");
+			for(Aluno a: d.getAlunos()) {
+				System.out.println("          - " + a.getNome());
+			}
 			i++;
 		}
 
