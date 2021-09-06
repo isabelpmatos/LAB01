@@ -46,6 +46,215 @@ public class Files {
 			System.out.println(e.getMessage());
 		}
 	}
+	public void transfArrayListParaAlunos(String path, Universidade universidade) {
+		String line = "";
+		try(BufferedReader br = new BufferedReader(new FileReader(path))) {
+			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))){
+				PrintWriter pw = new PrintWriter(path);
+				pw.close();				
+				
+				for(Aluno a: universidade.getAlunos()) {
+					String linha = a.getUsuario().concat(",").concat(a.getSenha()).concat(",").concat(a.getNome()).concat(",").concat(a.getCurso().getNome()).concat(",").concat(Integer.toString(a.getCodigoDoAluno())).concat(",").concat(Integer.toString(a.getperiodo()));
+					line = br.readLine();
+					try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+						try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+							if(brAux.readLine() == null) {
+								bwAux.write(linha);
+							}
+							else {
+								bwAux.newLine();
+								bwAux.write(linha);
+							}
+						}
+						
+						catch(IOException e) {
+							System.out.println(e.getMessage());
+						}
+					}
+				}
+				}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	public void transfArrayListParaUsers(String path, Universidade universidade) {
+		try(BufferedReader br = new BufferedReader(new FileReader(path))){
+			PrintWriter pw = new PrintWriter(path);
+			pw.close();
+			
+			for(User u: universidade.getUsers()) {
+				String linha = u.getUsuario().concat(",").concat(u.getSenha());
+				System.out.println("Linha user: " + linha);
+				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+						if(brAux.readLine() == null) {
+							bwAux.write(linha);
+						}
+						else {
+							bwAux.newLine();
+							bwAux.write(linha);
+						}
+					}
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void transfArrayListParaProfessores(String path, Universidade universidade) {
+		try(BufferedReader br = new BufferedReader(new FileReader(path))){
+			PrintWriter pw = new PrintWriter(path);
+			pw.close();
+			
+			for(Professor p: universidade.getProfessores()) {
+				String linha = p.getUsuario().concat(",").concat(p.getSenha()).concat(",").concat(p.getNome()).concat(",");
+				System.out.println("Linha professor: " + linha);
+				int i = 0;
+				while(i < p.getOfertasMinistradas().size()) {
+					linha = linha.concat(Integer.toString(p.getOfertasMinistradas().get(i).getId())).concat(";");
+					i++;
+				}
+				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+						if(brAux.readLine() == null) {
+							bwAux.write(linha);
+						}
+						else {
+							bwAux.newLine();
+							bwAux.write(linha);
+						}
+					}
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void transfArrayListParaSecretarios(String path, Universidade universidade) {
+		try(BufferedReader br = new BufferedReader(new FileReader(path))){
+			PrintWriter pw = new PrintWriter(path);
+			pw.close();
+			for(Secretario s: universidade.getSecretarios()) {
+				String linha = s.getUsuario().concat(",").concat(s.getSenha()).concat(",").concat(s.getNome());
+				System.out.println("Linha Secretario: " + linha);
+				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+						if(brAux.readLine() == null) {
+							bwAux.write(linha);
+						}
+						else {
+							bwAux.newLine();
+							bwAux.write(linha);
+						}
+					}
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void transfArrayListParaOferta(String path, Universidade universidade) {
+		try {
+			PrintWriter pw = new PrintWriter(path);
+			pw.close();
+			for(Disciplina d: universidade.getDisciplinas()){
+				try(BufferedReader br = new BufferedReader(new FileReader(path))){
+					for(Oferta o: d.getOfertas()) {
+						String linha = Integer.toString(o.getId()).concat(",").concat(o.getDisciplina().getNome()).concat(",");
+						if(o.isTemProfessor()) {
+							linha = linha.concat(o.getProfessor().getNome());
+						}
+						try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+							try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+								if(brAux.readLine() == null) {
+									bwAux.write(linha);
+								}
+								else {
+									bwAux.newLine();
+									bwAux.write(linha);
+								}
+							}
+						}
+					}
+				}
+				catch(IOException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void transfArrayListParaDisciplinas(String path, Universidade universidade) {
+		try(BufferedReader br = new BufferedReader(new FileReader(path))) {
+			PrintWriter pw = new PrintWriter(path);
+			pw.close();
+			for(Disciplina d: universidade.getDisciplinas()) {
+				String linha = d.getNome().concat(",").concat(Boolean.toString(d.isOptativa())).concat(",").concat(Double.toString(d.getValor())).concat(",").concat(Boolean.toString(d.isAtiva())).concat(",");
+				int i = 0;
+				while(i < d.getAlunos().size()) {
+					linha = linha.concat(Integer.toString(d.getAlunos().get(i).getCodigoDoAluno())).concat(";");
+					i++;
+				}
+				linha = linha.concat(",");
+				i = 0;
+				while(i < d.getOfertas().size()) {
+					linha = linha.concat(Integer.toString(d.getOfertas().get(i).getId())).concat(";");
+					i++;
+				}
+				System.out.println("Linha Disciplina: " + linha);
+				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+						if(brAux.readLine() == null) {
+							bwAux.write(linha);
+						}
+						else {
+							bwAux.newLine();
+							bwAux.write(linha);
+						}
+					}
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void transfArrayListParaCursos(String path, Universidade universidade) {
+		try(BufferedReader br = new BufferedReader(new FileReader(path))){
+			PrintWriter pw = new PrintWriter(path);
+			pw.close();
+			for(Curso c: universidade.getCursos()) {
+				String linha = c.getNome().concat(",").concat(Integer.toString(c.getNumCreditos())).concat(",");
+				int i = 0;
+				while(i < c.getDisciplinas().size()) {
+					linha = linha.concat(c.getDisciplinas().get(i).getNome()).concat(";");
+					i++;
+				}
+				System.out.println("Linha Curso: " + linha);
+				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
+					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
+						if(brAux.readLine() == null) {
+							bwAux.write(linha);
+						}
+						else {
+							bwAux.newLine();
+							bwAux.write(linha);
+						}
+					}
+				}
+			}
+		}
+		catch(IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	public void escreveDisciplinaNoCurso(String nomeCurso, String path, String content, Universidade universidade) {
 		String line = "";
 		String[] lineArray;
