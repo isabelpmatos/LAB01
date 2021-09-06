@@ -86,7 +86,6 @@ public class Files {
 			
 			for(User u: universidade.getUsers()) {
 				String linha = u.getUsuario().concat(",").concat(u.getSenha());
-				System.out.println("Linha user: " + linha);
 				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
 					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
 						if(brAux.readLine() == null) {
@@ -111,7 +110,6 @@ public class Files {
 			
 			for(Professor p: universidade.getProfessores()) {
 				String linha = p.getUsuario().concat(",").concat(p.getSenha()).concat(",").concat(p.getNome()).concat(",");
-				System.out.println("Linha professor: " + linha);
 				int i = 0;
 				while(i < p.getOfertasMinistradas().size()) {
 					linha = linha.concat(Integer.toString(p.getOfertasMinistradas().get(i).getId())).concat(";");
@@ -140,7 +138,6 @@ public class Files {
 			pw.close();
 			for(Secretario s: universidade.getSecretarios()) {
 				String linha = s.getUsuario().concat(",").concat(s.getSenha()).concat(",").concat(s.getNome());
-				System.out.println("Linha Secretario: " + linha);
 				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
 					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
 						if(brAux.readLine() == null) {
@@ -208,7 +205,6 @@ public class Files {
 					linha = linha.concat(Integer.toString(d.getOfertas().get(i).getId())).concat(";");
 					i++;
 				}
-				System.out.println("Linha Disciplina: " + linha);
 				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
 					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
 						if(brAux.readLine() == null) {
@@ -237,7 +233,6 @@ public class Files {
 					linha = linha.concat(c.getDisciplinas().get(i).getNome()).concat(";");
 					i++;
 				}
-				System.out.println("Linha Curso: " + linha);
 				try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
 					try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
 						if(brAux.readLine() == null) {
@@ -262,20 +257,15 @@ public class Files {
 			
 			line = br.readLine();
 			
-			System.out.println(line);
 			lineArray = line.split(",");
-			System.out.println(lineArray[0]);
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))){
 				while(!(nomeCurso.equals(lineArray[0]))) {
 					line = br.readLine();
-					System.out.println(line);
 					lineArray = line.split(",");
-					System.out.println(lineArray[0]);
 				}
 				if(nomeCurso.equals(lineArray[0])) {
 					PrintWriter pw = new PrintWriter(path);
 					pw.close();
-					System.out.println("Apagou");
 					for(Curso c: universidade.getCursos()) {
 						
 						String linha = c.getNome().concat(",").concat(Integer.toString(c.getNumCreditos()).concat(","));
@@ -303,7 +293,6 @@ public class Files {
 							System.out.println(e.getMessage());
 						}
 						
-						System.out.println("Linha: " + linha);
 					}
 					
 				}
@@ -322,13 +311,10 @@ public class Files {
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))){
 				while(!(nomeDisciplina.equals(lineArray[0]))) {
 					line = br.readLine();
-					System.out.println(line);
 					lineArray = line.split(",");
-					System.out.println(lineArray[0]);
 				}
 			PrintWriter pw = new PrintWriter(path);
 			pw.close();
-			System.out.println("Apagou");
 			for(Disciplina d: universidade.getDisciplinas()) {
 						
 				String linha = d.getNome().concat(",").concat(Boolean.toString(d.isOptativa()).concat(",").concat(Double.toString(d.getValor())).concat(",").concat(Boolean.toString(d.isAtiva())));
@@ -362,7 +348,6 @@ public class Files {
 				catch(IOException e) {
 					System.out.println(e.getMessage());
 				}	
-				System.out.println("Linha: " + linha);
 			}
 					
 				
@@ -385,7 +370,6 @@ public class Files {
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))){
 			PrintWriter pw = new PrintWriter(path);
 			pw.close();
-			System.out.println("Apagou");
 			
 			for(Curso c: universidade.getCursos()) {
 				for(Disciplina d: c.getDisciplinas()) {
@@ -398,11 +382,9 @@ public class Files {
 						try(BufferedReader brAux = new BufferedReader(new FileReader(path))){
 							try(BufferedWriter bwAux = new BufferedWriter(new FileWriter(path, true))){
 								if(brAux.readLine() == null) {
-									System.out.println("Imprimindo linha " + linha);
 									bwAux.write(linha);
 								}
 								else {
-									System.out.println("Imprimindo linha " + linha);
 									bwAux.newLine();
 									bwAux.write(linha);
 								}
@@ -541,16 +523,10 @@ public class Files {
 		for(Curso c: universidade.getCursos()) {
 			try(BufferedReader br = new BufferedReader(new FileReader(path))){
 				line = br.readLine();
-				System.out.println("CARREGANDO OFERTAS -----------------------------------------------");
-					System.out.println(c.getNome() + " ------------------------------------");
 					while(line != null) {
 						lineArray = line.split(",");
-						System.out.println(lineArray[1]);
 						if(c.contemDisciplina(lineArray[1])){
-							System.out.println(c.getNome() + " contém " + lineArray[1]);
 							if(lineArray.length > 2 && !(lineArray[2].isBlank())) {
-								System.out.println(lineArray[2]);
-								System.out.println(lineArray[1]);
 								c.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
 								universidade.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
 								if(universidade.getProfessorPorNome(lineArray[2]).getOfertasMinistradas().size() == 0) {
@@ -563,7 +539,6 @@ public class Files {
 							}
 						}
 						line = br.readLine();
-						System.out.println(line);
 					}
 				
 			}

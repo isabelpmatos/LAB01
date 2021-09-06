@@ -12,6 +12,7 @@ public class Aplicacao {
 		files.carregarCursos(universidade);
 		files.carregarAlunos(universidade);
 		files.carregarDisciplinas(universidade);
+		
 		files.carregarProfessores(universidade);
 		files.carregarOfertas(universidade);
 		files.carregarSecretarios(universidade);
@@ -121,6 +122,9 @@ public class Aplicacao {
 	}
 
 	private static void updateDisciplina(Scanner teclado, Universidade univ, User u) {
+		String pathDisciplinas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		Files files = new Files();
 		System.out.println("\nSelecione uma disciplina para editar:");
 		int i = 1;
 		for(Disciplina d: univ.getDisciplinas()) {
@@ -155,12 +159,19 @@ public class Aplicacao {
 
 		System.out.println("\nDisciplina Atualizada!");
 		
+		files.transfArrayListParaDisciplinas(pathDisciplinas, univ);
+		files.transfArrayListParaOferta(pathOfertas, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 		
 	}
 
 	private static void updateCurso(Scanner teclado, Universidade univ, User u) {
+		Files files = new Files();
+		String pathCursos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
+		String pathDisciplinas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
 		System.out.println("\nSelecione um curso para editar:");
 		int i = 1;
 		for(Curso c: univ.getCursos()) {
@@ -226,11 +237,20 @@ public class Aplicacao {
 		
 		System.out.println("\nCurso Atualizado!");
 		
+		files.transfArrayListParaCursos(pathCursos, univ);
+		files.transfArrayListParaDisciplinas(pathDisciplinas, univ);
+		files.transfArrayListParaOferta(pathOfertas, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
 
 	private static void updateProfessor(Scanner teclado, Universidade univ, User u) {
+		Files files = new Files();
+		String pathProfessores = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\professores.txt";
+		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		String pathDisciplinas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		
 		System.out.println("\nSelecione um professor para editar:");
 		int i = 1;
 		for(Professor p: univ.getProfessores()) {
@@ -287,11 +307,17 @@ public class Aplicacao {
 		
 		System.out.println("\nProfessor Atualizado!");
 		
+		files.transfArrayListParaProfessores(pathProfessores, univ);
+		files.transfArrayListParaOferta(pathOfertas, univ);
+		files.transfArrayListParaDisciplinas(pathDisciplinas, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
 
 	private static void updateAluno(Scanner teclado, Universidade univ, User u) {
+		String pathAlunos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\alunos.txt";
+		Files files = new Files();
 		System.out.println("\nSelecione um aluno para editar:");
 		int i = 1;
 		for(Aluno a: univ.getAlunos()) {
@@ -352,6 +378,8 @@ public class Aplicacao {
 		teclado.nextLine();
 
 		System.out.println("\nAluno atualizado!");
+		
+		files.transfArrayListParaAlunos(pathAlunos, univ);
 		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);	
@@ -429,6 +457,11 @@ public class Aplicacao {
 	}
 	
 	public static void removerCurso (Scanner teclado, Universidade univ, User u) {
+		
+		String pathCursos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\cursos.txt";
+		String pathDisciplinas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		Files files = new Files();
+		
 		System.out.println("\nQual curso deseja remover? ");
 		int i = 1;
 		for(Curso c: univ.getCursos()) {
@@ -445,6 +478,10 @@ public class Aplicacao {
 			i++;
 		}
 		univ.removeCurso(univ.getCursoPorNome(nomeCurso));
+		
+		files.transfArrayListParaCursos(pathCursos, univ);
+		files.transfArrayListParaDisciplinas(pathDisciplinas, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -522,6 +559,9 @@ public class Aplicacao {
 	}
 	
 	private static void removerDisciplina (Scanner teclado, Universidade univ, User u) {
+		String pathDisciplinas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		Files files = new Files();
 		System.out.println("\nQual disciplina deseja remover? ");
 		int i = 1;
 		for(Disciplina d: univ.getDisciplinas()) {
@@ -538,6 +578,10 @@ public class Aplicacao {
 			i++;
 		}
 		univ.removeDisciplina(univ.getDisciplinaPorNome(nomeDisciplina));
+		
+		files.transfArrayListParaDisciplinas(pathDisciplinas, univ);
+		files.transfArrayListParaOferta(pathOfertas, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -633,6 +677,11 @@ public class Aplicacao {
 	}
 	
 	private static void removerProfessor (Scanner teclado, Universidade univ, User u) {
+		Files files = new Files();
+		String pathProfessores = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\professores.txt";
+		String pathOfertas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
+		String pathDisciplinas = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\disciplinas.txt";
+		
 		System.out.println("\nQual professor deseja remover? ");
 		int i = 1;
 		for(Professor p: univ.getProfessores()) {
@@ -649,6 +698,11 @@ public class Aplicacao {
 			i++;
 		}
 		univ.removeProfessor(univ.getProfessorPorNome(nomeProfessor));
+		
+		files.transfArrayListParaProfessores(pathProfessores, univ);
+		files.transfArrayListParaOferta(pathOfertas, univ);
+		files.transfArrayListParaDisciplinas(pathDisciplinas, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -727,6 +781,8 @@ public class Aplicacao {
 	}
 	
 	private static void removerAluno (Scanner teclado, Universidade univ, User u) {
+		String pathAlunos = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\alunos.txt";
+		Files files = new Files();
 		System.out.println("\nQual aluno deseja remover? ");
 		int i = 1;
 		for(Aluno a: univ.getAlunos()) {
@@ -743,6 +799,9 @@ public class Aplicacao {
 			i++;
 		}
 		univ.removeAluno(univ.getAlunoPorNome(nomeAluno));
+		
+		files.transfArrayListParaAlunos(pathAlunos, univ);
+		
 		teclado.nextLine();
 		menuSecretario(univ, teclado, u);
 	}
@@ -876,7 +935,6 @@ public class Aplicacao {
 		Oferta oferta = disc.getOfertas().get(0);
 
 		a.addOferta(oferta);
-		oferta.getDisciplina().addAluno(a);
 
 		System.out.println("Matrícula efetuada!");
 		teclado.nextLine();
@@ -915,7 +973,6 @@ public class Aplicacao {
 
 		for(Aluno a: oferta.getDisciplina().getAlunos()) {
 			System.out.println(i + "-" + a.getNome());
-			i++;
 		}
 
 		teclado.nextLine();
