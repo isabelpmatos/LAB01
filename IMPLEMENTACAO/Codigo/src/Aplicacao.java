@@ -17,10 +17,6 @@ public class Aplicacao {
 		files.carregarOfertas(universidade);
 		files.carregarSecretarios(universidade);
 		
-		for(Aluno a: universidade.getAlunos()) {
-			System.out.println(a.getNome());
-		}
-		
 		/*
 		for(Curso c: universidade.getCursos()) {
 			System.out.println(c.getNome() + " ------------------");
