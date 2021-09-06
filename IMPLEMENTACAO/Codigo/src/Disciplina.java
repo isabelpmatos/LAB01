@@ -7,6 +7,7 @@ public class Disciplina {
 	private String nome;
 	private boolean isAtiva = true;
 	private boolean isOptativa;
+	private boolean isOpen = true;
 	private static final int MAX_ALUNOS = 60;
 	private static final int MIN_ALUNOS = 3;
 	private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
@@ -29,6 +30,23 @@ public class Disciplina {
 		this.valor = valor;
 	}
 
+	
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
+	}
+
+	public boolean isAtiva() {
+		return isAtiva;
+	}
+
+	public void setAtiva(boolean isAtiva) {
+		this.isAtiva = isAtiva;
+	}
+	
 	public boolean isAtiva() {
 		return isAtiva;
 	}
@@ -112,6 +130,18 @@ public class Disciplina {
 		}
 		else {
 			return new Oferta();
+		}
+	}
+	
+	public void disciplinaAtiva () {
+		if (this.alunos.size() < MIN_ALUNOS) {
+			this.setAtiva(false);
+		}
+	}
+	
+	public void inscricoesDisciplinasEncerradas () {
+		if (this.alunos.size() >= MAX_ALUNOS) {
+			this.setOpen(false);
 		}
 	}
 }
