@@ -935,6 +935,7 @@ public class Aplicacao {
 		Oferta oferta = disc.getOfertas().get(0);
 
 		a.addOferta(oferta);
+		oferta.getDisciplina().addAluno(a);
 
 		System.out.println("Matrícula efetuada!");
 		teclado.nextLine();
@@ -973,6 +974,7 @@ public class Aplicacao {
 
 		for(Aluno a: oferta.getDisciplina().getAlunos()) {
 			System.out.println(i + "-" + a.getNome());
+			i++;
 		}
 
 		teclado.nextLine();
