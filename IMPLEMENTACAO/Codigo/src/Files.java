@@ -329,46 +329,42 @@ public class Files {
 		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\ofertas.txt";
 		String line = "";
 		String[] lineArray;
-		
-		// Bel, o BufferedReader precisa retornar ao início do arquivo depois que ele terminar de ler ele todo
-		// tentei usar br.mark(0) mas nn consegui
-		
-		try(BufferedReader br = new BufferedReader(new FileReader(path))){
-			line = br.readLine();
-			System.out.println(line);
-			
-			System.out.println("CARREGANDO OFERTAS -----------------------------------------------");
-			for(Curso c: universidade.getCursos()) {
-				System.out.println(c.getNome() + " ------------------------------------");
-				while(line != null) {
-					lineArray = line.split(",");
-					System.out.println(lineArray[1]);
-					if(c.contemDisciplina(lineArray[1])){
-						System.out.println(c.getNome() + " contém " + lineArray[1]);
-						if(lineArray.length > 2 && !(lineArray[2].isBlank())) {
-							System.out.println(lineArray[2]);
-							System.out.println(lineArray[1]);
-							c.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
-							universidade.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
-							if(universidade.getProfessorPorNome(lineArray[2]).getOfertasMinistradas().size() == 0) {
-								universidade.getProfessorPorNome(lineArray[2]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
+		for(Curso c: universidade.getCursos()) {
+			try(BufferedReader br = new BufferedReader(new FileReader(path))){
+				line = br.readLine();
+				System.out.println("CARREGANDO OFERTAS -----------------------------------------------");
+					System.out.println(c.getNome() + " ------------------------------------");
+					while(line != null) {
+						lineArray = line.split(",");
+						System.out.println(lineArray[1]);
+						if(c.contemDisciplina(lineArray[1])){
+							System.out.println(c.getNome() + " contém " + lineArray[1]);
+							if(lineArray.length > 2 && !(lineArray[2].isBlank())) {
+								System.out.println(lineArray[2]);
+								System.out.println(lineArray[1]);
+								c.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
+								universidade.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
+								if(universidade.getProfessorPorNome(lineArray[2]).getOfertasMinistradas().size() == 0) {
+									universidade.getProfessorPorNome(lineArray[2]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1]), universidade.getProfessorPorNome(lineArray[2])));
+								}
+							}
+							else {
+								c.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1])));
+								universidade.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1])));
 							}
 						}
-						else {
-							c.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1])));
-							universidade.getDisciplinaPorNome(lineArray[1]).addOferta(new Oferta(Integer.parseInt(lineArray[0]), universidade.getDisciplinaPorNome(lineArray[1])));
-						}
+						line = br.readLine();
+						System.out.println(line);
 					}
-					line = br.readLine();
-					System.out.println(line);
-				}
+				
 			}
-			System.out.println("FIM CARREGANDO OFERTAS --------------------------------------------");
+			catch(IOException e) {
+				System.out.println(e.getMessage());
+				System.out.println(e.getLocalizedMessage());
+			}
+			System.out.println("FIM OFERTAS --------------------------------------------");
 		}
-		catch(IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println(e.getLocalizedMessage());
-		}
+		System.out.println("FIM CARREGANDO OFERTAS --------------------------------------------");
 	}
 	public void carregarAlunos(Universidade universidade) {
 		String path = "C:\\Users\\Daniel\\Desktop\\Lab1\\Lab1Project\\src\\app\\alunos.txt";
