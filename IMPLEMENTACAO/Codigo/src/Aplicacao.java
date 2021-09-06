@@ -167,7 +167,6 @@ public class Aplicacao {
 		
 		System.out.println("\nDISCIPLINA:" + d.getNome() + "\n");
 		
-		
 		System.out.println("Nome atual: " + d.getNome());
 		System.out.println("Digite o novo nome: ");
 		d.setNome(teclado.nextLine());
@@ -306,7 +305,6 @@ public class Aplicacao {
 		int opcao = teclado.nextInt();
 		Disciplina d = univ.getDisciplinas().get(opcao - 1);
 		Oferta o = d.getOfertas().get(0);
-		System.out.println(o.getId());
 		p.addOferta(o);
 		teclado.nextLine();
 		
@@ -371,7 +369,7 @@ public class Aplicacao {
 		a.setCodigoDoAluno(teclado.nextInt());
 		teclado.nextLine();
 		
-		System.out.println("Período do curso atual: " + a.getCodigoDoAluno());
+		System.out.println("Período do curso atual: " + a.getperiodo());
 		System.out.println("Digite o novo período do curso: ");
 		a.setPeriodo(teclado.nextInt());
 		teclado.nextLine();
